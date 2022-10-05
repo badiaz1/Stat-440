@@ -1,0 +1,296 @@
+# STAT 440 Statistical Data Management - Fall 2021
+## Final Exam 
+### Due: Tuesday December 14, 2021 11:59 pm US Central Time
+#### Created by Course staff
+
+Grading Rubric (per question):  
+2 points if complete and correct  
+1 point if incomplete or incorrect  
+0 points if no attempt made  
+
+
+**Retrieving your work**
+
+This .md file is written in Markdown. The .md file is rendered as an .html file for easier viewing. This is located in the **exams** directory within the **stat440-fa21-course-content** repo, i.e. **stat440-fa21-course-content/exams** in GitHub. It is always recommended that you **pull** (or refresh) the **stat440-fa21-course-content** repo to ensure that you have the most updated version of all course content.
+
+**Submitting your work**
+
+In your individual student repo (named as your netID), you are to submit ***two*** files:
+
+a. Your reproducible document file (.Rmd or .ipynb) which should be saved as final-exam-netID.Rmd or final-exam-netID.ipynb. For example, my final file would be saved as final-exam-kinson2.Rmd.
+
+b. Your rendered reproducible document file (.html) which should be saved as final-exam-netID.html. For example, my final file would be saved as final-exam-kinson2.html.
+
+You have an unlimited number of submissions, but only the latest proper submission (commit and push) will be viewed and graded. **Remember the .Rmd or .ipynb file needs to render properly to .html before submitting.** 
+
+
+***
+
+All students are expected to complete all problems.
+
+*The following problems should be completed by you as an individual. If any problem asks you a particular question, be sure to answer it completely (with code, written sentences, or both). Written sentences should not appear in code chunks or code cells. Written sentences should appear in Markdown syntax unless specifically stated otherwise.*
+
+***Do not change anything in this file above the double line.***
+
+***
+***
+
+### Use only one programming language for this entire assignment. Use the URLs to access the data (if any). No local files allowed.
+
+**#1** Using Markdown syntax, make a numbered list with your first name in normal text as the first item and your last name in upper case letters (i.e. all caps).
+
+1. Brianna
+2. DIAZ
+
+**#2** Using Markdown syntax and at least two complete sentences, what was your most memorable moment being in this class this semester? If there were none, why do you think that is?
+
+- The most memorable moment was the last day of in person class.It set as a reminder of how group work is important in this class and field. Learning and bouncing ideas off of each other really helped me build in this class. 
+
+**#3** Using Markdown syntax and at least two complete sentences, what current course content would you remove? What content which is is not currently existing would you add?
+
+- Although I feel all topics cover in this course were useful for me; one topic that could be removed is is cleaning and validating data, might be a little repetitive. Something can be added is visualization of data. 
+
+**#4** Using Markdown syntax and at least two complete sentences, would you take this course if it were twice as challenging? Explain your answer.
+
+- I would take this class if it were twice as challenging. I think that the course gave great concepts in how to use are and how to manipulate data. 
+
+**#5** statement: **Semi-structured** data is human readable text with some structures such as punctuation and other characters to separate fields, and observations. 
+
+If the text in bold is the word or phrase that makes the statement true, then write TRUE below in all caps. If the text in bold is the word or phrase that makes the statement false, then write FALSE below in all caps followed by a period, and write the correct term in bold text after the period. For example, FALSE. **newword**
+
+FALSE. **Unstructured data**
+
+**#6** statement: The **SelectorGadget** tool allows one to inspect the particular part of a web page and better narrow down the html tags.
+
+If the text in bold is the word or phrase that makes the statement true, then write TRUE below in all caps. If the text in bold is the word or phrase that makes the statement false, then write FALSE below in all caps followed by a period, and write the correct term in bold text after the period. For example, FALSE. **newword**
+
+TRUE
+
+**#7** statement: A **conditional execution** is useful when we want to do repetitive actions on observations to show how values change over iterations such as when the iterations are predetermined by a single value or condition.
+
+If the text in bold is the word or phrase that makes the statement true, then write TRUE below in all caps. If the text in bold is the word or phrase that makes the statement false, then write FALSE below in all caps followed by a period, and write the correct term in bold text after the period. For example, FALSE. **newword**
+
+FALSE. **Loops**
+
+**#8** statement: In SQL, renaming variables can be accomplished using the **NEW** keyword with the SELECT clause and serves as a convenient way to change a column's name without an assignment operator.
+
+If the text in bold is the word or phrase that makes the statement true, then write TRUE below in all caps. If the text in bold is the word or phrase that makes the statement false, then write FALSE below in all caps followed by a period, and write the correct term in bold text after the period. For example, FALSE. **newword**
+
+FALSE. **AS**
+
+**#9** Import the FBI's Crimes in the United States 2019 Data using one programming language software and the GHE data URL https://github-dev.cs.illinois.edu/stat440-fa21/stat440-fa21-course-content/raw/master/data/fbi-table6-cius2019-data.csv or Box data URL https://uofi.box.com/shared/static/kk221erhk6a3o90jtby11gc5rwqy1qmp.csv. Now, print the structure of the data. **This structure should match the data description below.**
+```{r}
+library(tidyverse)
+library(readr)
+library(dplyr)
+fbi <- read_csv("https://raw.github-dev.cs.illinois.edu/stat440-fa21/stat440-fa21-course-content/master/data/fbi-table6-cius2019-data.csv?token=AAACSTVNAZAKDBA7QYQ6XPLBYDGZA", skip = 3)
+
+fbi <-  fbi[-c(1934,1935,1936,1937,1938),]
+
+str(fbi)
+```
+
+  - The dataset (a .csv file) contains 1933 rows and 12 columns (ignoring irrelevant headers and footnotes), while the truly useful data dimension may be much smaller; rectifying the useful data will be handled in later problems. The data contains crime counts and rates based on population in various metropolitan statistical areas (MSA). The crimes are voluntarily reported to the FBI's Uniform Crime Reporting Program by agencies in each MSA. Some MSAs are not represented in this data. The data key may be useful and is linked with the GHE URL https://github-dev.cs.illinois.edu/stat440-fa21/stat440-fa21-course-content/raw/master/data/fbi-table6-cius2019-data-key.pdf or the Box URL https://uofi.box.com/shared/static/c97pkbp75eqk493iel15q755cl9w3cjo.pdf. The original source is the FBI Uniform Crime Reporting Data Program https://www.fbi.gov/services/cjis/ucr.
+
+**#10** Using the imported data in **Problem 9** and a programming language, perform any and all data management concepts such that your resulting data's structure matches the structure in the image below. **You must print your data's structure. If using Python, print the data's structure and first 5 observations for each column.**
+```{r}
+prob10a <- fbi %>% 
+  select(-c(`Counties/principal cities`))
+
+prob10b <- prob10a %>%
+  select(`Metropolitan Statistical Area`, `Population`)%>%
+  drop_na(`Metropolitan Statistical Area`)
+
+prob10c<- prob10a %>%
+  drop_na(`Rape1`)%>%
+  filter(is.na(Population))%>%
+  select(-c(`Metropolitan Statistical Area`, `Population`))
+
+prob10 <- bind_cols(prob10b,prob10c) 
+
+prob10$Population <- as.numeric(gsub(",","", prob10$Population))
+
+str(prob10)
+```
+
+
+![img10](https://github.com/kinson2/fefa2021/raw/main/img10.png)
+
+**#11** Using the imported data in **Problem 9** and a programming language, perform any and all data management concepts such that your resulting data's structure matches the structure in the image below. **You must print your data's structure. If using Python, print the data's structure and first 5 observations for each column.**
+```{r}
+prob11 <- prob10 %>%
+  rename(Violent_crime_ratePer100K = `Violent\ncrime`)%>%
+  rename(Murder_ratePer100K = `Murder and\nnonnegligent\nmanslaughter`)%>%
+  rename(Rape_ratePer100K = `Rape1`)%>%
+  rename(Robbery_ratePer100K = `Robbery`)%>%
+  rename(Agrravated_assault_ratePer100K = `Aggravated\nassault`)%>%
+  rename(Property_crime_ratePer100K = `Property\ncrime`)%>%
+  rename(Burglary_ratePer100K = `Burglary`)%>%
+  rename(Larceny_theft_ratePer100K = `Larceny-\ntheft`)%>%
+  rename(Motor_vehicle_theft_ratePer100K = `Motor\nvehicle\ntheft`)
+  
+str(prob11)
+```
+
+![img11](https://github.com/kinson2/fefa2021/raw/main/img11.png)
+
+**#12** Using the imported data in **Problem 9** and a programming language, perform any and all data management concepts such that your resulting data's structure, head, and tail matches the structure, head, and tail results in the image below. **You must print your data's structure, head, and tail. If using Python, print the data's structure and first 5 observations for each column as well as the head and tail.**
+```{r}
+prob11$`Metropolitan Statistical Area` <- str_remove_all(prob11$`Metropolitan Statistical Area`, " |M.S.A.|M.D.|2|3|4|5|")
+
+prob11$`Metropolitan Statistical Area` <- str_replace_all(prob11$`Metropolitan Statistical Area`, "PuertoRico", "PR")
+
+str(prob11)
+
+head(prob11,10)
+tail(prob11,10)
+```
+
+
+![img11](https://github.com/kinson2/fefa2021/raw/main/img12.png)
+
+**#13** According to the FBI Uniform Crime Reporting Data Program, "the data presented in Crime in the United States reflect the Hierarchy Rule, which requires that only the most serious offense in a multiple-offense criminal incident be counted. The descending order of UCR violent crimes are murder and non-negligent manslaughter, rape, robbery, and aggravated assault, followed by the property crimes of burglary, larceny-theft, and motor vehicle theft." Use this information to arrange the resulting data in **Problem 12** following the Hierarchy Rule and print the first 25 rows. **The violent crime rate per 100K and property crime rate per 100K columns should not be included in the result.** 
+```{r}
+prob13 <- prob11%>%
+  select(-c(`Violent_crime_ratePer100K`,`Property_crime_ratePer100K`))%>%
+  arrange(desc(`Murder_ratePer100K`))%>%
+  arrange(desc(`Rape_ratePer100K`))%>%
+  arrange(desc(`Robbery_ratePer100K`))%>%
+  arrange(desc(`Agrravated_assault_ratePer100K`))%>%
+  arrange(desc(`Burglary_ratePer100K`))%>%
+  arrange(desc(`Larceny_theft_ratePer100K`))%>%
+  arrange(desc(`Motor_vehicle_theft_ratePer100K`))
+
+head(prob13, 25)
+```
+
+**#14** The crime rates per 100K inhabitants in the results for previous problems did not exclusively come from only considering the Total area actually reporting section of the MSAs (in the original dataset); some MSAs did have the Total area actually reporting as 100.0%, but several do not. This means that the crime rates per 100K inhabitants may be incorrectly calculated. Re-calculate the 9 crime rates per 100K inhabitants using the counts from the Total area actually reporting section of the MSAs (in the original dataset). Then, arrange the results following the FBI's Hierarchy Rule and print first 25 rows. **Las Cruces, NM MSA does not have a Total area actually reporting section (in the original dataset); thus this MSA should be removed. There should be 326 MSAs after removing Las Cruces, NM MSA. Prior to arranging and printing the first 25 rows, your result should have 326 rows and 11 columns. Looking carefully at the original dataset in Problem 9 may be helpful.**
+```{r}
+prob14a <- prob11%>%
+  filter(!c(`Metropolitan Statistical Area` == "LasCruces,NM"))
+
+prob14b <- fbi %>%
+  filter(`Counties/principal cities` == "Total area actually reporting")%>%
+  rename("Area Reportiong" = `Population`)%>% 
+  select(`Counties/principal cities`, `Area Reportiong`)
+
+prob14b$`Area Reportiong` <- as.numeric(gsub("%","", prob14b$`Area Reportiong`))
+
+#prob14b$`Area Reportiong` <- prob14b$`Area Reportiong` / 100
+
+prob14 <- bind_cols(prob14a,prob14b) %>%
+  select(-c(`Counties/principal cities`))
+  
+
+prob14c <- prob14 %>% 
+  arrange(desc(`Murder_ratePer100K`), desc(`Rape_ratePer100K`), desc(`Robbery_ratePer100K`), desc(`Agrravated_assault_ratePer100K`),desc(`Burglary_ratePer100K`),desc(`Larceny_theft_ratePer100K`),desc(`Motor_vehicle_theft_ratePer100K`))
+
+prob14c$Violent_crime_ratePer100K <- prob14b$`Area Reportiong`/prob14c$Violent_crime_ratePer100K
+prob14c$Murder_ratePer100K <-prob14b$`Area Reportiong`/prob14c$Murder_ratePer100K
+prob14c$Rape_ratePer100K<- prob14b$`Area Reportiong`/prob14c$Rape_ratePer100K
+prob14c$Robbery_ratePer100K<-prob14b$`Area Reportiong`/prob14c$Robbery_ratePer100K
+prob14c$Agrravated_assault_ratePer100K<-prob14b$`Area Reportiong`/prob14c$Agrravated_assault_ratePer100K
+prob14c$Burglary_ratePer100K<-prob14b$`Area Reportiong`/prob14c$Burglary_ratePer100K
+prob14c$Larceny_theft_ratePer100K<-prob14b$`Area Reportiong`/prob14c$Larceny_theft_ratePer100K
+prob14c$Motor_vehicle_theft_ratePer100K<-prob14b$`Area Reportiong`/prob14c$Motor_vehicle_theft_ratePer100K
+prob14c$Property_crime_ratePer100K<-prob14b$`Area Reportiong`/prob14c$Property_crime_ratePer100K
+
+head(prob14c, 25)
+```
+
+**#15** Now that we see different crime rates per 100K inhabitants when considering the Total area actually reporting in the Counties/principal cities section (in the original dataset), let's do more. Create a new dataset such that the only MSAs kept are those with 100.0% Total area actually reporting and the crime rates per 100K inhabitants are re-calculated based on the crime counts for these MSAs reporting at 100.0%. This new dataset should have a new column called "Percent_of_total_area_actually_reporting" where each observation in this column should equal "100.0%" as a character-formatted column. Then, arrange the results following the FBI's Hierarchy Rule and print first 25 rows. **Prior to arranging and printing the first 25 rows, your result should have 196 rows and 12 columns. Looking carefully at the original dataset in Problem 9 may be helpful.**
+```{r}
+prob15a<- prob14 %>%
+  filter(`Area Reportiong` == 100.0)
+
+prob15 <- prob15a%>%  
+  mutate(Percent_of_total_area_actually_reporting = "100.0%")%>%
+  select(-c(`Area Reportiong`))
+  
+head(prob15, 25)
+```
+
+**#16** Suppose the United States national counts for population and crimes may be computed by summing up the counts for each MSA from the resulting data in **Problem 14** (prior to arranging and printing that result's first 25 rows). Now, calculate the United States national population and the 9 national crime rates per 100K inhabitants and combine this new national row (should have 11 columns) with the resulting data from **Problem 14** (should have 326 row and 11 columns). Then, print last 25 rows. **Prior to printing the last 25 rows, your result should have 327 rows and 11 columns. Looking carefully at the original dataset in Problem 9 may be helpful.**
+```{r}
+
+na = drop_na(prob14)
+n <- colSums(na[sapply(na, is.numeric)])
+
+`Metropolitan Statistical Area` <- c("National")
+Population <- c(1.999497e+08)
+Violent_crime_ratePer100K <- c(1.086790e+02)
+Murder_ratePer100K <- c( Inf)
+Rape_ratePer100K <- c(8.832668e+02)
+Robbery_ratePer100K <- c(9.392539e+02)
+Agrravated_assault_ratePer100K <- c(1.720677e+02)
+Property_crime_ratePer100K <- c(1.683266e+01)
+Burglary_ratePer100K <- c(1.062315e+02)
+Larceny_theft_ratePer100K <- c(2.264171e+01)
+Motor_vehicle_theft_ratePer100K  <- as.numeric( c(2.622848e+02))
+
+National <- cbind(`Metropolitan Statistical Area`,Population,Violent_crime_ratePer100K, Murder_ratePer100K,Rape_ratePer100K,Robbery_ratePer100K,Agrravated_assault_ratePer100K,Property_crime_ratePer100K,Burglary_ratePer100K,Larceny_theft_ratePer100K, Motor_vehicle_theft_ratePer100K)
+
+prob16b <- prob14 %>%
+  select(-c(`Area Reportiong`))
+
+prob16 <- rbind(prob16b, National)
+
+prob16$Population <- as.numeric(prob16$Population)
+prob16$Violent_crime_ratePer100K<- as.numeric(prob16$Violent_crime_ratePer100K)
+prob16$Murder_ratePer100K<- as.numeric(prob16$Murder_ratePer100K)
+prob16$Rape_ratePer100K<- as.numeric(prob16$Rape_ratePer100K)
+prob16$Robbery_ratePer100K<- as.numeric(prob16$Robbery_ratePer100K)
+prob16$Agrravated_assault_ratePer100K<- as.numeric(prob16$Agrravated_assault_ratePer100K)
+prob16$Property_crime_ratePer100K<- as.numeric(prob16$Property_crime_ratePer100K)
+prob16$Burglary_ratePer100K<- as.numeric(prob16$Burglary_ratePer100K)
+prob16$Larceny_theft_ratePer100K<- as.numeric(prob16$Larceny_theft_ratePer100K)
+prob16$Motor_vehicle_theft_ratePer100K<- as.numeric(prob16$Motor_vehicle_theft_ratePer100K)
+
+tail(prob16, 25)
+```
+
+**#17** How many metropolitan statistical areas have a violent crime rate per 100K inhabitants higher than the national rate? What is the national violent crime rate per 100K inhabitants. **Your answer to the question should be written using Markdown syntax, and you should include executable code with a printed result as evidence of your answer.**
+```{r}
+prob17 <- prob16 %>%
+  filter(`Violent_crime_ratePer100K` > Violent_crime_ratePer100K[327])
+
+nrow(prob17)
+```
+
+- 318 metropolitan statistical areas have a violent crime rate per 100K inhabitants higher than the national rate. The national violent crime rate per 100K inhabitant is 108.679. 
+
+**#18** Is the average for each of the 9 crime rates per 100K inhabitants within 10 units (above or below) of the national crime rates per 100K inhabitants? For which crime rates, do these two values (average vs national) differ beyond 10 units? **Your answer to the question should be written using Markdown syntax, and you should include executable code with a printed result as evidence of your answer.**
+```{r}
+Violent_crime = prob16$Violent_crime_ratePer100K[327]- mean(prob14$Violent_crime_ratePer100K, na.rm = T)
+
+Murder= prob16$Murder_ratePer100K[327]-mean(prob14$Murder_ratePer100K, na.rm = T)
+
+Rape= prob16$Rape_ratePer100K[327]-mean(prob14$Rape_ratePer100K, na.rm = T)
+
+Robbery= prob16$Robbery_ratePer100K[327]-mean(prob14$Robbery_ratePer100K, na.rm = T)
+
+Aggravated_assault= prob16$Aggravated_assault_ratePer100K[327]-mean(prob14$Agrravated_assault_ratePer100K, na.rm = T)
+
+Property_crime= prob16$Property_crime_ratePer100K[327]-mean(prob14$Property_crime_ratePer100K,na.rm = T)
+
+Burglary= prob16$Burglary_ratePer100K[327]-mean(prob14$Burglary_ratePer100K,na.rm = T)
+
+Larceny_theft= prob16$Larceny_theft_ratePer100K[327]-mean(prob14$Larceny_theft_ratePer100K, na.rm = T)
+
+Motor_vehicle= prob16$Motor_vehicle_theft_ratePer100K[327]-mean(prob14$Motor_vehicle_theft_ratePer100K, na.rm = T)
+
+prob18 <- c(Violent_crime, Murder, Rape, Robbery, Aggravated_assault, Property_crime, Burglary, Larceny_theft, Motor_vehicle)
+
+prob18
+```
+
+- None of the crime rates per 100K inhabitant are 10 units above or below the national rate. 
+
+**#19** Based on the FBI's data policies, is it more reasonable to (a) compare the metropolitan statistical areas to other metropolitan statistical areas or (b) to compare the metropolitan areas to the united states? Why? **Your answers to the preceding questions should be written using Markdown syntax using complete sentences.**
+
+- It would be reasonable to (b) compare the metropolitan statistical areas to other metropolitan statistical areas because those are how the numbers are being compared.
+
+**#20** Based on the problems covered in this exam, do you feel that this was the work of a data engineer, data scientist, data analyst, or data architect? In which of these roles do you see yourself working professionally? **Your answers to the preceding questions should be written using Markdown syntax using complete sentences.**
+
+- I feel this is work of a data engineer. Currently i see myself perusing a role of data analyst; however I do want to explore what the other fields have to offer. 
+
